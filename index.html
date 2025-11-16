@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Krish Vekariya — Digital Portfolio</title>
+<meta name="description" content="Krish Vekariya — B.Tech Computer Engineering | Portfolio: AI/ML, Web, Projects, Skills, Resume" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1115; --card:#14161a; --muted:#98a0aa; --accent:#4cc9f0; --glass: rgba(255,255,255,0.04);
+    --radius:12px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,#0b0c0e 0%, #0f1115 100%);
+    color:#e6eef3;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  /* NAV */
+  header{
+    position:fixed; inset:0 0 auto 0; height:72px; display:flex; align-items:center; justify-content:space-between;
+    padding:12px 28px; gap:20px; z-index:60; backdrop-filter: blur(6px);
+    background: linear-gradient(180deg, rgba(11,13,14,0.55), rgba(11,13,14,0.35));
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{
+    height:44px; width:44px; border-radius:10px; background:linear-gradient(135deg,var(--accent),#8ae6ff); display:flex; align-items:center; justify-content:center; font-weight:800; color:#061018;
+    box-shadow: 0 6px 18px rgba(76,201,240,0.08), inset 0 -6px 10px rgba(255,255,255,0.02);
+  }
+  nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-size:14px}
+  nav a.active, nav a:hover{color:var(--accent)}
+
+  /* LAYOUT */
+  main{padding-top:92px; max-width:1100px; margin:0 auto; padding-left:20px; padding-right:20px;}
+  .hero{
+    display:flex; gap:32px; align-items:center; padding:56px 0 36px;
+    border-radius:16px; background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+  }
+
+  .hero-left{flex:1; padding:22px}
+  .profile {
+    width:160px; height:160px; border-radius:50%; overflow:hidden; border:6px solid var(--accent);
+    box-shadow: 0 10px 40px rgba(76,201,240,0.10);
+  }
+  .profile img{width:100%; height:100%; object-fit:cover; display:block}
+
+  h1{font-size:28px; margin:0 0 8px; letter-spacing:-0.2px}
+  .tag{color:var(--muted); margin-bottom:8px}
+  .cta{display:inline-flex; gap:8px; align-items:center; margin-top:12px}
+  .btn{
+    background:var(--accent); color:#031016; padding:10px 14px; border-radius:10px; font-weight:600; border:0; cursor:pointer;
+    box-shadow: 0 8px 20px rgba(76,201,240,0.12);
+  }
+  .ghost{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:9px 12px; border-radius:10px}
+
+  /* two-column quick info */
+  .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px}
+  .info-card{background:var(--card); padding:12px; border-radius:10px; color:var(--muted); font-size:14px}
+
+  /* SECTIONS */
+  section{margin-top:44px}
+  .section-head{display:flex; justify-content:space-between; align-items:end; gap:16px; margin-bottom:18px}
+  .section-title{font-size:20px; margin:0; color:#eaf6fb; border-left:4px solid var(--accent); padding-left:12px}
+  .section-sub{color:var(--muted); font-size:13px}
+
+  /* CARDS GRID */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
+  .card{background:var(--card); padding:18px; border-radius:12px; color:var(--muted); transition:transform .25s, box-shadow .25s}
+  .card:hover{transform: translateY(-6px); box-shadow: 0 12px 40px rgba(2,6,23,0.6)}
+
+  .project-title{font-weight:700; color:#eaf6fb; margin-bottom:6px}
+  .muted{color:var(--muted); font-size:13px}
+
+  /* TABLE OF CONTENTS list */
+  .toc-list{list-style:none; padding-left:0; display:flex; gap:8px; flex-wrap:wrap}
+  .toc-list li a{background:var(--glass); padding:8px 10px; border-radius:8px; font-size:13px; color:var(--muted); text-decoration:none}
+  .toc-list li a:hover{color:var(--accent)}
+
+  /* footer */
+  footer{margin:56px 0; text-align:center; color:var(--muted); font-size:13px}
+
+  /* responsive */
+  @media (max-width:860px){
+    .hero{flex-direction:column; align-items:center; text-align:center}
+    nav{padding:12px 16px}
+    header .brand{gap:8px}
+    main{padding-left:14px; padding-right:14px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">KV</div>
+    <div style="line-height:1">
+      <div style="font-weight:700">Krish Vekariya</div>
+      <div style="font-size:12px;color:var(--muted)">B.Tech — PDEU</div>
+    </div>
+  </div>
+
+  <nav aria-label="Main navigation">
+    <a href="#hero" class="navlink">Home</a>
+    <a href="#toc" class="navlink">Contents</a>
+    <a href="#resume" class="navlink">Resume</a>
+    <a href="#projects" class="navlink">Projects</a>
+    <a href="#skills" class="navlink">Skills</a>
+    <a href="#contact" class="navlink">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO / COVER -->
+  <div class="hero" id="hero">
+    <div style="display:flex;align-items:center;gap:20px;width:100%">
+      <div class="profile" aria-hidden="false">
+        <img src="your-photo.jpg" alt="Krish Vekariya — profile photo">
+      </div>
+
+      <div class="hero-left">
+        <h1>Krish Vekariya</h1>
+        <div class="tag">B.Tech Computer Engineering — Pandit Deendayal Energy University</div>
+        <div style="color:var(--muted); margin-top:8px; font-size:14px">“Learning through logic. Growing through curiosity.”</div>
+
+        <div class="hero-grid" style="margin-top:14px">
+          <div class="info-card"><strong style="color:#eaf6fb">Email</strong><div class="muted">krish.vekariya1986@gmail.com</div></div>
+          <div class="info-card"><strong style="color:#eaf6fb">Location</strong><div class="muted">Gandhinagar, Gujarat, India</div></div>
+        </div>
+
+        <div class="cta">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="ghost" href="resume.pdf" target="_blank" rel="noreferrer">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <section id="toc" aria-label="table of contents">
+    <div class="section-head">
+      <h2 class="section-title">Table of Contents</h2>
+      <div class="section-sub">Quick links to every section</div>
+    </div>
+    <ul class="toc-list" style="margin-top:8px">
+      <li><a href="#hero">Cover</a></li>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#resume">Resume / CV</a></li>
+      <li><a href="#projects">Interdisciplinary Projects</a></li>
+      <li><a href="#skills">Advanced Skills</a></li>
+      <li><a href="#collab">Collaboration</a></li>
+      <li><a href="#ethics">Global Awareness</a></li>
+      <li><a href="#future">Future</a></li>
+      <li><a href="#conclusion">Conclusion & SWOT</a></li>
+      <li><a href="#testimonial">Testimonial</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </section>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="section-head">
+      <h2 class="section-title">Introduction & Learning Philosophy</h2>
+      <div class="section-sub">Personal journey and academic philosophy</div>
+    </div>
+    <div style="max-width:900px">
+      <p style="color:var(--muted)">I believe learning is driven by curiosity and consistent practice. My academic journey focuses on combining theory with hands-on projects — especially in AI/ML and backend systems. I follow a cycle of understanding fundamentals, prototyping solutions, measuring results, and iterating. <strong>“Understand deeply, build logically, improve continuously.”</strong></p>
+    </div>
+  </section>
+
+  <!-- RESUME (full) -->
+  <section id="resume">
+    <div class="section-head">
+      <h2 class="section-title">Resume / CV</h2>
+      <div class="section-sub">Education, Experience, Skills, Certifications & more</div>
+    </div>
+
+    <div class="grid" style="margin-top:8px">
+      <div class="card">
+        <strong>Education</strong>
+        <div class="muted" style="margin-top:8px">Pandit Deendayal Energy University (PDEU), Gandhinagar — B.Tech in Computer Engineering (2024 - Present) — CGPA: 8.67</div>
+        <div class="muted" style="margin-top:8px">Relevant coursework: Data Structures, Algorithms, DBMS, OS, AI/ML</div>
+      </div>
+
+      <div class="card">
+        <strong>Experience</strong>
+        <div style="margin-top:8px">
+          <div style="font-weight:600">Python Developer Intern — Codsoft</div>
+          <div class="muted">Jan 2025 - Feb 2025</div>
+          <ul class="muted" style="margin-top:6px">
+            <li>Built automation scripts & data analysis tools</li>
+            <li>Used Pandas/NumPy to optimize workflows</li>
+            <li>Improved efficiency of repetitive processes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <strong>Technical Skills</strong>
+        <div class="muted" style="margin-top:8px">
+          Python, C, Java, SQL, HTML, CSS, JavaScript, PHP<br>
+          Frameworks & Tools: Flask (basic), Scikit-learn, NumPy, Pandas<br>
+          Databases: MySQL
+        </div>
+      </div>
+
+      <div class="card">
+        <strong>Soft Skills & Interests</strong>
+        <div class="muted" style="margin-top:8px">
+          Communication, Team Leadership, Problem Solving, Critical Thinking<br>
+          Hobbies: Gaming, Cricket, Comedy, Social Volunteering
+        </div>
+      </div>
+
+      <div class="card">
+        <strong>Certifications & Workshops</strong>
+        <div class="muted" style="margin-top:8px">
+          AI/ML Workshop, Data Science Course, Web Development Workshop
+        </div>
+      </div>
+
+      <div class="card">
+        <strong>Languages</strong>
+        <div class="muted" style="margin-top:8px">English (Proficient), Hindi (Fluent), Gujarati (Native)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS - each has objective, methodology, outcome, challenges -->
+  <section id="projects">
+    <div class="section-head">
+      <h2 class="section-title">Interdisciplinary Projects & Research</h2>
+      <div class="section-sub">Selected 2–3 major projects showing interdisciplinary skills</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="project-title">Coastal Threat Detection Website</div>
+        <div class="muted"><strong>Objective:</strong> Provide public safe-zone data using geolocation and NDRF locations.</div>
+        <div class="muted"><strong>Methodology:</strong> Frontend (HTML/CSS/JS) + maps, geolocation API, backend for location data.</div>
+        <div style="margin-top:8px" class="muted"><strong>Outcome:</strong> Interactive map and quick guidance for users during coastal threats.</div>
+        <div style="margin-top:8px" class="muted"><strong>Challenges & Solutions:</strong> Integrating live location accuracy — solved by smoothing updates and throttling API calls.</div>
+      </div>
+
+      <div class="card">
+        <div class="project-title">GreenPin News Portal</div>
+        <div class="muted"><strong>Objective:</strong> Aggregated trending news with filters by category.</div>
+        <div class="muted"><strong>Methodology:</strong> Fetching multiple APIs, caching, and UI filtering.</div>
+        <div style="margin-top:8px" class="muted"><strong>Outcome:</strong> Clean UI for reading, category filters, and performance improvements via caching.</div>
+        <div style="margin-top:8px" class="muted"><strong>Challenges:</strong> Handling duplicate articles — solved with hashing + timestamp rules.</div>
+      </div>
+
+      <div class="card">
+        <div class="project-title">AI/ML Mini Projects</div>
+        <div class="muted"><strong>Objective:</strong> Build predictive models and learn ML pipeline.</div>
+        <div class="muted"><strong>Methodology:</strong> Data cleaning, feature selection, Scikit-learn models, cross-validation.</div>
+        <div style="margin-top:8px" class="muted"><strong>Outcome:</strong> Models with evaluation metrics, confusion matrices and insights.</div>
+        <div style="margin-top:8px" class="muted"><strong>Challenges:</strong> Overfitting — resolved with regularization and feature reduction.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head">
+      <h2 class="section-title">Advanced Skill Development & Mastery</h2>
+      <div class="section-sub">Technical skills, soft skills, and artefacts</div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><strong>Machine Learning</strong><div class="muted" style="margin-top:8px">Scikit-learn, model training, evaluation metrics, preprocessing pipelines</div></div>
+      <div class="card"><strong>Backend & APIs</strong><div class="muted" style="margin-top:8px">Flask, REST, SQL design</div></div>
+      <div class="card"><strong>Data Handling</strong><div class="muted" style="margin-top:8px">Pandas, NumPy, SQL queries</div></div>
+      <div class="card"><strong>Soft Skills</strong><div class="muted" style="margin-top:8px">Leadership, communication, teamwork</div></div>
+    </div>
+  </section>
+
+  <!-- COLLABORATION -->
+  <section id="collab">
+    <div class="section-head">
+      <h2 class="section-title">Collaborative & Leadership Experiences</h2>
+      <div class="section-sub">Roles, team dynamics, conflict resolution</div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <p class="muted">Led hackathon teams, coordinated tasks, implemented Agile-like task breakdowns, resolved technical disagreements through pair-programming and demos. Ensured deliverables met deadlines and quality standards.</p>
+    </div>
+  </section>
+
+  <!-- ETHICS -->
+  <section id="ethics">
+    <div class="section-head">
+      <h2 class="section-title">Global Awareness & Ethical Considerations</h2>
+      <div class="section-sub">Responsible AI, data privacy, and sustainability</div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <p class="muted">I consider privacy, fairness, and impact while designing systems. Example: for the Coastal Threat system I ensured personal location data is not stored and only used client-side; for ML projects I used anonymized datasets and documented potential biases.</p>
+    </div>
+  </section>
+
+  <!-- FUTURE -->
+  <section id="future">
+    <div class="section-head">
+      <h2 class="section-title">Future Aspirations & Professional Development</h2>
+      <div class="section-sub">Goals and continuous improvement plan</div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <p class="muted">Short term: deep internships in AI/ML and backend. Long term: MS in Computer Science (abroad), building production ML systems, contribute to open-source projects, and mentor juniors.</p>
+    </div>
+  </section>
+
+  <!-- CONCLUSION & SWOT -->
+  <section id="conclusion">
+    <div class="section-head">
+      <h2 class="section-title">Conclusion & Self-Assessment</h2>
+      <div class="section-sub">Summary and SWOT analysis</div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <strong>Summary</strong>
+        <div class="muted" style="margin-top:8px">This portfolio showcases my academic achievements, technical projects, teamwork and ethical awareness. I continue to learn and iterate on my work.</div>
+      </div>
+      <div class="card">
+        <strong>SWOT</strong>
+        <div class="muted" style="margin-top:8px">
+          <ul>
+            <li><strong>Strengths:</strong> Problem solving, quick learning</li>
+            <li><strong>Weaknesses:</strong> Perfectionism under deadlines</li>
+            <li><strong>Opportunities:</strong> AI industry growth</li>
+            <li><strong>Threats:</strong> Rapid tech changes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section id="testimonial">
+    <div class="section-head">
+      <h2 class="section-title">Testimonial</h2>
+      <div class="section-sub">From mentor / instructor</div>
+    </div>
+    <div class="card" style="margin-top:8px">
+      <em class="muted">“Krish is a hardworking and consistent learner who takes initiative in technical tasks.” — Mentor / Instructor</em>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-head">
+      <h2 class="section-title">Contact</h2>
+      <div class="section-sub">Email & LinkedIn</div>
+    </div>
+    <div class="card">
+      <strong>Email</strong>
+      <div class="muted" style="margin-top:8px">krish.vekariya1986@gmail.com</div>
+      <strong style="margin-top:12px; display:block">LinkedIn</strong>
+      <div class="muted" style="margin-top:8px"><a href="https://www.linkedin.com/in/krish-v-9661b1290/" target="_blank" style="color:var(--accent); text-decoration:none">linkedin.com/in/krishvekariya</a></div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 — Designed by Krish Vekariya · <a href="resume.pdf" style="color:var(--muted)">Download Resume (PDF)</a>
+  </footer>
+</main>
+
+<!-- minimal JS for active nav + smooth highlight -->
+<script>
+  // smooth scroll handled by CSS scroll-behavior; add active link highlight
+  const navlinks = document.querySelectorAll('nav a, header nav a');
+  const sections = Array.from(document.querySelectorAll('main section, .hero'));
+  function onScroll(){
+    const y = window.scrollY + 120;
+    let current = sections[0].id;
+    for (const s of sections){
+      if (s.offsetTop <= y) current = s.id;
+    }
+    navlinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
